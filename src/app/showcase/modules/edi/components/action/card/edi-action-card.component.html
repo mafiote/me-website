@@ -1,0 +1,109 @@
+<div class="rs-page-header ui-g">
+    <p-menubar [model]="menuItems" class="ui-g-12">
+        <p-progressSpinner [style]="{width: '20px', height: '20px', 'margin-top': '10px'}" strokeWidth="8" animationDuration=".5s"
+            [hidden]="!inProgress"></p-progressSpinner>
+    </p-menubar>
+</div>
+
+
+<div class="ui-g rs-card-body">
+    <!-- Sol Kısım -->
+    <div class="ui-g ui-g-12 ui-md-12 ui-lg-10">
+
+        <!-- Genel Bilgiler  -->
+        <div class="ui-g ui-g-12 form-group">
+
+            <div class="ui-g-12 form-container">
+                <div class="ui-g-3 ui-md-3 ui-lg-1">
+                    <span class="md-inputfield">
+                        <input name="code" type="text" [(ngModel)]="rec.code" required [(readonly)]="useAutoCode" style="width: 100%;" pInputText>
+                        <label>{{"COMMON.FIELD.CODE" | translate }}</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
+                        <input name="name" type="text" [(ngModel)]="rec.name" required style="width: 100%;" pInputText>
+                        <label>{{"COMMON.FIELD.NAME" | translate }}</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <rs-autoComplete [label]="'EDI.ACTION.FIELD.IS_IMPORT' | translate" [dataList]="isImportItems" [(model)]="rec.isImport"></rs-autoComplete>
+                </div>
+            </div>
+
+
+            <div class="ui-g-12">
+                <span class="md-inputfield">
+                    <input style="width: 100%;" [(ngModel)]="rec.desc" type="text" pInputText>
+                    <label>{{'COMMON.FIELD.DESC' | translate}}</label>
+                </span>
+            </div>
+
+        </div>
+
+        <p-tabView>
+            <!-- Detay işlemler -->
+            <p-tabPanel header="{{ 'EDI.ACTION.CARD.TITLE_DETAIL' | translate }}">
+                <p-dataTable [value]="rec.ediActionDetails" [editable]="true" [rowStyleClass]="getDeletedRecsClass">
+                    <!-- button column -->
+                    <p-column styleClass="col-button, col-c" [style]=" {'width':'55px' }">
+                        <ng-template pTemplate="header">
+                            <button type="button" pButton icon="ui-icon-add" style="font-size: 10px;" class="ui-button-success" (click)="addDetail()"></button>
+                        </ng-template>
+                        <ng-template let-rowData="rowData" pTemplate="body">
+                            <button type="button" pButton icon="ui-icon-delete" style="font-size: 10px;" *ngIf="!rowData.isDeleted" class="ui-button-danger"
+                                (click)="rowData.isDeleted = true"></button>
+                            <button type="button" pButton icon="ui-icon-undo" style="font-size: 10px;" *ngIf="rowData.isDeleted" (click)="rowData.isDeleted = false"></button>
+                        </ng-template>
+                    </p-column>
+
+                    <p-column field="orderNum" styleClass="col-c" [style]="{ 'width': '70px' }" header="{{'EDI.ACTION.FIELD.ORDER_NUM' | translate}}"
+                        [editable]="true"></p-column>
+                    <p-column field="code" styleClass="col-c" [style]="{ 'width': '100px' }" header="{{'COMMON.FIELD.CODE' | translate}}" [editable]="true"></p-column>
+                    <p-column field="name" [style]="{ 'width': '200px' }" styleClass="rs-truncate" header="{{'COMMON.FIELD.NAME' | translate}}"
+                        [editable]="true"></p-column>
+                    <p-column field="apiPath" styleClass="rs-truncate" header="{{'EDI.ACTION.DETAIL.FIELD.API_PATH' | translate}}" [editable]="true"></p-column>
+                </p-dataTable>
+            </p-tabPanel>
+
+            <!-- Veri Link -->
+            <p-tabPanel header="{{ 'EDI.ACTION.CARD.TITLE_DATALINK' | translate }}">
+                <p-dataTable [value]="rec.ediDataLinks" [editable]="true" [rowStyleClass]="getDeletedRecsClass">
+                    <!-- button column -->
+                    <p-column styleClass="col-button, col-c" [style]=" {'width':'55px' }">
+                        <ng-template pTemplate="header">
+                            <button type="button" pButton icon="ui-icon-add" style="font-size: 10px;" class="ui-button-success" (click)="addDataLink()"></button>
+                        </ng-template>
+                        <ng-template let-rowData="rowData" pTemplate="body">
+                            <button type="button" pButton icon="ui-icon-delete" style="font-size: 10px;" *ngIf="!rowData.isDeleted" class="ui-button-danger"
+                                (click)="rowData.isDeleted = true"></button>
+                            <button type="button" pButton icon="ui-icon-undo" style="font-size: 10px;" *ngIf="rowData.isDeleted" (click)="rowData.isDeleted = false"></button>
+                        </ng-template>
+                    </p-column>
+
+                    <p-column field="ediData" [style]="{ 'width': '200px' }" header="{{'EDI.ACTION.DATALINK.FIELD.EDI_DATA' | translate}}" [editable]="true"></p-column>
+
+                    <p-column field="refTypeName" header="{{ 'EDI.ACTION.DATALINK.FIELD.REF_TYPE' | translate }}" [editable]="true" [style]=" {'overflow':'visible' }">
+                        <ng-template let-col let-rowData="rowData" pTemplate="editor">
+                            <rs-autoComplete [name]="'refType'" [isDropdown]="true" [required]="true" [isInputField]="false" [(model)]="rowData.refType"
+                                [enum]="refTypeEnum" (onSelected)="onRefTypeSelected(rowData, $event)"></rs-autoComplete>
+                        </ng-template>
+                        <ng-template let-rowData="rowData" pTemplate="body">
+                            {{ rowData.refTypeName == '' ? '' : ('ENUM.RsRefType.' + rowData.refTypeName | translate) }}
+                        </ng-template>
+                    </p-column>
+
+                    <p-column field="refName" header="{{ 'EDI.ACTION.DATALINK.FIELD.REF_ID' | translate }}" [editable]="true" [style]=" {'overflow':'visible' }">
+                        <ng-template let-col let-rowData="rowData" pTemplate="editor">
+                            <rs-autoComplete [name]="'refID'" [required]="true" [isInputField]="false" [(model)]="rowData.refID" [apiPath]="rowData.refTypeApiPath"
+                                (onSelected)="onRefIdSelected(rowData, $event)"></rs-autoComplete>
+                        </ng-template>
+                    </p-column>
+                </p-dataTable>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </div>
+
+</div>

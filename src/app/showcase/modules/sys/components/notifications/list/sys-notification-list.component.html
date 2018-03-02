@@ -1,0 +1,41 @@
+<!-- Card -->
+<!-- <sys-notification-card #card *ngIf="isCardShow" [rec]="selectedRec" (onDel)="onDel($event)" (onSave)="onSave($event)" (onCancel)="onCancel($event)"
+    [previewMod]="previewMod"></sys-notification-card> -->
+
+<!-- List -->
+<div class="list" [hidden]="isCardShow">
+
+    <!-- Filte, Menu -->
+    <div class="rs-toolbar ui-g-12 ui-g-nopad">
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                <button pButton type="button" icon="ui-icon-send" class="teal-btn" label="{{ 'NOTIFICATION.SEND' | translate}}" (click)="addRecord()"></button>
+            </div>
+        </p-toolbar>
+
+        <p-toolbar class="rs-filter-summary">
+
+            <div class="ui-toolbar-group-left">
+                <button pButton type="button" icon="ui-icon-refresh" (click)="getList()"></button>
+            </div>
+        </p-toolbar>
+    </div>
+
+    <!-- Liste -->
+
+    <div class="ui-g-12 ui-g-nopad">
+        <p-dataTable #list id="list" [loading]="loading" scrollable="true" [rows]="50" [paginator]="true" [pageLinks]="10" scrollHeight="calc(100vh - 270px)"
+            selectionMode="single" (onRowDblclick)="rowDblClick($event)" [value]="notificationList" exportFilename="manuel-cost">
+
+            <p-column field="code" [style]="{ 'width': '100px' }" header="{{'NOTIFICATION.FIELDS.CODE' | translate}}"></p-column>
+            <p-column field="message" [style]="{ 'width': '100px' }" styleClass="col-r" header="{{'NOTIFICATION.FIELDS.MESSAGE' | translate}}"></p-column>
+            <p-column field="senderPersonnelCode" [style]="{ 'width': '100px' }" header="{{'NOTIFICATION.FIELDS.PER_CODE' | translate}}"></p-column>
+            <p-column field="senderPersonnelName" [style]="{ 'width': '100px' }" header="{{'NOTIFICATION.FIELDS.PER_NAME' | translate}}"></p-column>
+            <p-column field="sendDate" header="{{'NOTIFICATION.FIELDS.DATE' | translate}}" [style]="{ 'width': '100px' }" styleClass="col-c">
+                <ng-template let-data="rowData" pTemplate="body">
+                    {{ data.date | date:'dd.MM.yyyy'}}
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>

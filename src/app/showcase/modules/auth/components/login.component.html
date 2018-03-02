@@ -1,0 +1,32 @@
+<div class="login-body" style="background-image: none; background-color: #fbfbfb;" (keyup.enter)="login()">
+    <div class="card login-panel ui-fluid">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <img src="./assets/layout/images/login.png" style="width:100%">
+            </div>
+            <div class="ui-g-12">
+                <span class="md-inputfield">
+                    <input type="text" autocomplete="off" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" [(ngModel)]="loginDto.username">
+                    <label>{{ 'LOGIN.USERNAME' | translate }}</label>
+                </span>
+            </div>
+            <div class="ui-g-12">
+                <span class="md-inputfield">
+                    <input type="password" autocomplete="off" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" [(ngModel)]="loginDto.password">
+                    <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12">
+                <button type="button" *ngIf="!inProgress" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
+                    (click)="login()">
+                    <span class="ui-button-text ui-c">{{ 'LOGIN.SIGNIN' | translate }} </span>
+                </button>
+                <p-progressSpinner *ngIf="inProgress" [style]="{width: '45px', height: '45px'}" strokeWidth="8" animationDuration=".5s"></p-progressSpinner>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

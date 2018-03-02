@@ -1,0 +1,28 @@
+<div class="rs-toolbar ui-g-12 ui-g-nopad">
+    <p-toolbar>
+        <div class="ui-toolbar-group-left">
+            <button pButton type="button" class="rs-toolbar-button" label="{{ 'COMMON.MENU.BACK' | translate }}" (click)="cancel()"></button>
+        </div>
+    </p-toolbar>
+</div>
+
+<div class="ui-g ui-g-12 ui-g-nopad rs-card-body">
+    <div class="col-l ui-g-12 ui-md-12" *ngFor="let rec of recs">
+        <h1>{{rec.version}}</h1>
+
+        <ul style="font-size:14px; list-style: none;">
+            <li style="margin-top: 10px;" *ngFor="let item of rec.feature">
+                <i style="color: #2ecc71; font-size: 8px;" class="material-icons">adjust</i> {{item[lang]}}
+            </li>
+        </ul>
+
+        <ul style="font-size:14px; list-style: none;">
+
+            <li style="margin-top: 10px;" *ngFor="let item of rec.bugfix">
+                <i style="color: #c0392b; font-size: 8px;" class="material-icons">adjust</i> {{item[lang]}}
+            </li>
+        </ul>
+
+
+    </div>
+</div>

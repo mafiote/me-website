@@ -1,0 +1,276 @@
+{
+    "NAVIGATION": {
+        "/": "Ana Sayfa",
+        "/home": "Ana Sayfa",
+        "/auth/login": "Giriş",
+        "/sys/EdiList": "Edi Log",
+        "/sys/Dashboard": "Sys - Ana Sayfa",
+        "/sys/Autocode": "AutoCode",
+        "/sys/version": "Güncelleme Geçmişi",
+        "/edi/action": "EDI Aksiyon",
+        "/sys/role": "Yetkilendirme",
+        "/sys/Notifications": "Bildirim Yönetimi"
+    },
+    "ENUM": {
+        "PdGender": {
+            "none": "-",
+            "man": "Erkek",
+            "woman": "Kadın"
+        }
+    },
+    "COMMON": {
+        "DATE": {
+            "DATE1": "Tarih 1",
+            "DATE2": "Tarih 2",
+            "DATE": "Tarih",
+            "DATETIME": "Tarih/Saat",
+            "TIME": "Saat",
+            "PRIME_LANG": "tr",
+            "PRIME_DATE_FORMAT": "dd.mm.yy",
+            "DATE_FORMAT": "dd.MM.yyyy",
+            "DATETIME_FORMAT": "dd.MM.yyyy",
+            "YEAR": "Yıl",
+            "MONTH": "AY",
+            "MONTH_1": "Ocak",
+            "MONTH_2": "Şubat",
+            "MONTH_3": "Mart",
+            "MONTH_4": "Nisan",
+            "MONTH_5": "Mayıs",
+            "MONTH_6": "Haziran",
+            "MONTH_7": "Temmuz",
+            "MONTH_8": "Ağustos",
+            "MONTH_9": "Eylül",
+            "MONTH_10": "Ekim",
+            "MONTH_11": "Kasım",
+            "MONTH_12": "Aralık",
+            "ERROR_MSG": "Bitiş tarihi başlangıç tarihinden küçük olamaz. Girdiğiniz tarih aralıklarını kontrol ediniz."
+        },
+        "MENU": {
+            "CANCEL": "İptal",
+            "SAVE": "Kaydet",
+            "FILTER": "Filtrele",
+            "REFRESH": "Yenile",
+            "CLEAR": "Temizle",
+            "BACK": "Geri",
+            "DELETE": "Sil",
+            "ADD": "Ekle",
+            "CLOSE": "Kapat",
+            "SETTINGS": "Ayarlar",
+            "SHIFT": "Vardiya",
+            "HOME": "Anasayfa",
+            "LOG": "Log",
+            "ANALYSIS": "Analiz",
+            "FOLLOW": "Takip Et",
+            "WATCHERS": "Takipçiler",
+            "UNFOLLOW": "Takibi Bırak"
+        },
+        "DIALOG": {
+            "SAVE": "Kaydet",
+            "CANCEL": "İptal",
+            "YES": "Evet",
+            "NO": "Hayır",
+            "CONFIRM_CANCEL": {
+                "TITLE": "Dikkat!",
+                "TEXT": "Yaptığınız değişiklik iptal edilecek. Devam etmek istediğinize emin misiniz?"
+            },
+            "CONFIRM_DELETE": {
+                "TITLE": "Dikkat!",
+                "TEXT": "Seçilen kayıt silinecek. Devam etmek istediğinize emin misiniz?"
+            },
+            "SEVERITY": {
+                "WARN": "Dikkat",
+                "ERROR": "Hata",
+                "SUCCESS": "Başarılı"
+            },
+            "AUTHORIZATION": {
+                "LOGOUT": "Yeniden giriş yapmanız gerekiyor."
+            }
+        },
+        "FIELD": {
+            "CODE": "Kod",
+            "NAME": "Tanım",
+            "MAX": "Maks.",
+            "MIN": "Min.",
+            "DESC": "Açıklama",
+            "TOTAL": "Toplam",
+            "CHOOSE": "Seçiniz",
+            "KEYWORD": "Anahtar Sözcük",
+            "PHONE": "Telefon"
+        },
+        "MSG": {
+            "VALIDATION": {
+                "REQUIRED": "{{field}} girişi zorunludur",
+                "PATTERN": "{{field}} formatı hatalı",
+                "EMAIL": "{{field}} mail formatı hatalı",
+                "MIN": "{{field}} min {{min}} olmalıdır",
+                "MINLENGTH": "{{field}} min {{min}} karakter olmalıdır",
+                "MAXLENGTH": "{{field}} max {{max}} karakter olmalıdır"
+            },
+            "SEVERITY": {
+                "WARN": "Dikkat",
+                "ERROR": "Hata",
+                "SUCCESS": "Başarılı"
+            },
+            "E_SAVE_001": "Kayıt esnasında hata oluşmuştur! Devam etmesi durumunda sistem yöneticinize başvurunuz.",
+            "E_SAVE_002": "Zorunlu alanları doldurup tekrar deneyiniz.",
+            "E_SAVE_003": "Girilen değer aralığını kontrol ediniz.",
+            "E_DEL_001": "Kayıt silinemedi! Silmeye çalıştığınız kayda bağlı kayıtlar olmadığına emin olun.",
+            "GNE0001": "Kayıt Bulunamadı.",
+            "GNE0002": "Kullanıcıya mail gönderilemedi",
+            "GNE0003": "Bu email ile daha önce bir kayıt oluşturulmuş.",
+            "GNE0004": "Kayıt sırasında hata oluştu.",
+            "GNE0005": "İlgili kayıt daha önce oluşturulmuştur. Bu işlem mükerrer kayda neden olacağı için yapamazsınız.",
+            "GNW0001": "Bu işlemi yapmak için yetki sahibi değilsiniz ",
+            "GNW0002": "İlgili ekran kodu bulunamadı.",
+            "EMW0001": "Mail gönderilmek üzere en az bir mail adresi seçilmek zorundadır.",
+            "ACW0001": "Kod formatının içine, otomatik artan kod numarasının eklenebilmesi için {0} yazılmalıdır.",
+            "ACW0002": "İlgili ekrana ait kod formatı bulunamadı.",
+            "FUE0001": "Dosya bulunamadı.",
+            "FUE0002": "ScreenCode ve refID alanı boş geçilemez.",
+            "FUW0001": "Desteklenmeyen dosya türü.",
+            "NFE0001": "Notification gönderilecek kişi-ler seçilmek zorundadır.",
+            "CWE0001": "İlgili kaydı zaten takip etmektesiniz.",
+            "CWE0002": "İlgili kaydı zaten takip etmemektesiniz."
+        },
+        "GRID": {
+            "SUM_TOTAL": "Toplam Tutar",
+            "RECORD_COUNT": "Kayıt Sayısı",
+            "TOTAL_LOSS": "Toplam Kayıp",
+            "BTN_EXCEL_EXPORT": "Excel'e Aktar"
+        },
+        "CARD": {
+            "SAVE_FIRST": "Bu kısım için öncelikle kaydetmelisiniz"
+        },
+        "ATTACHMENT": {
+            "TITLE": "Ekli Dosyalar",
+            "CHOOSE_LABEL": "Ekle",
+            "UPLOAD_LABEL": "Yükle",
+            "CANCEL_LABEL": "İptal"
+        }
+    },
+    "LANG": {
+        "MENU_TITLE": "Dil Değişimi",
+        "TR": "Türkçe",
+        "EN": "İngilizce"
+    },
+    "SETTINGS": {
+        "MENU_TITLE": "Ayarlar",
+        "SYSTEM": "Sistem Ayarları",
+        "MAIL": "Mail Yönetimi",
+        "USER_ROLES": "Kullanıcı ve Roller",
+        "EDI_MANAGEMENT": "Edi Ayarları",
+        "NOTIFICATION": {
+            "TITLE": "Bildirim",
+            "MANAGEMENT": "Bildirim Yönetimi"
+        }
+    },
+    "NOTIFICATION": {
+        "TITLE": "Bildirim",
+        "FIELDS": {
+            "NO_MESSAGE": "Henüz bir bildiriminiz yok.",
+            "CODE": "Bildirim Kodu",
+            "DATE": "Gönderim Tarihi",
+            "PER_CODE": "Gönderen Personel Kodu",
+            "PER_NAME": "Gönderen Personel",
+            "MESSAGE": "Bildirim Mesajı"
+        },
+        "CODES": {
+            "TEST": "ABC {X} ..."
+        },
+        "SEND": "Gönder"
+    },
+    "SYS": {
+        "EDI": {
+            "TITLE": "Edi",
+            "LOG": "Edi Log",
+            "TRANSPORT": "Aktar",
+            "REF_TABLE": "Referans Tablo",
+            "IS_READ": "Arşivlenmiş",
+            "IS_RE_IMPORT": "Aktarılmış",
+            "IMPORT": "Aktar",
+            "READ": "Arşivle"
+        },
+        "AUTOCODE": {
+            "TITLE": "Autocode",
+            "SCREEN_CODE": "Ekran Kodu",
+            "LAST_CODE": "Son Kod",
+            "SCREEN_NAME": "Ekran İsmi",
+            "CODE_FORMAT": "Kod Formatı",
+            "UPDATE_ON": "Değişiklik Modu Açık",
+            "UPDATE_OFF": "Değişiklik Modu Kapalı",
+            "UPDATABLE": "Kayıtlar Üstünde değişiklik yapılabilir."
+        },
+        "VERSION": {
+            "TITLE": "Güncelleme",
+            "LOG": "Geçmişi"
+        },
+        "IDENTITY_ROLE": {
+            "TITLE": "Sistem Yetkisi"
+        },
+        "ROLE_GROUP": {
+            "TITLE": "Yetkinlendirme",
+            "ROLE_GROUPS": "Rol Grupları",
+            "CARD": {
+                "TITLE_IDENTITY_ROLE": "Sistem Yetkileri",
+                "TITLE_PERSONNEL": "Kullanıcılar",
+                "PICKLIST_SOURCE": "Atanmayan",
+                "PICKLIST_TARGET": "Aktif"
+            }
+        }
+    },
+    "LOGIN": {
+        "USERNAME": "Kullanıcı Adı",
+        "PASSWORD": "Şifre",
+        "SIGNIN": "Giriş",
+        "SIGNUP": "Üye Ol",
+        "ERROR": "Giriş Yapılamadı"
+    },
+    "PD": {
+        "PERSONNEL": {
+            "TITLE": "Personel",
+            "FIELD": {
+                "CODE": "Sicil",
+                "NAME": "Ad/Soyad"
+            }
+        }
+    },
+    "EDI": {
+        "TITLE": "EDI",
+        "ACTION": {
+            "IMPORT": "Import",
+            "EXPORT": "Export",
+            "FIELD": {
+                "IS_IMPORT": "Aktarım Yönü",
+                "ORDER_NUM": "Sıra"
+            },
+            "CARD": {
+                "TITLE_DETAIL": "Aktarım Detayı",
+                "TITLE_DATALINK": "Veri İlişkilendirme"
+            },
+            "DETAIL": {
+                "FIELD": {
+                    "API_PATH": "Api Yolu"
+                }
+            },
+            "DATALINK": {
+                "FIELD": {
+                    "EDI_DATA": "Dış Veri",
+                    "REF_TYPE": "Referans Tablo",
+                    "REF_ID": "Referans Kayıt"
+                }
+            }
+        }
+    },
+    "ACCOUNT": {
+        "NEW_PASS": "Yeni Şifre",
+        "OLD_PASS": "Eski Şifre",
+        "CONF_PASS": "Şifreyi Tekrar Yazınız",
+        "TITLE_CHANGE_PASS": "Şifre Değiştir"
+    },
+    "PROFILE_MENU": {
+        "PROFILE": "Profil",
+        "CHANGE_PASS": "Şifre Değiştir",
+        "SETTINGS": "Ayarlar",
+        "LOGOUT": "Çıkış"
+    }
+}

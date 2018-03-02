@@ -1,0 +1,13 @@
+{
+    "LANG": {
+        "MENU_TITLE": "Languages",
+        "TR": "Turkish",
+        "EN": "English"
+    },
+    "LOGIN": {
+        "USERNAME": "User Name",
+        "PASSWORD": "Password",
+        "SIGNIN": "Sign In",
+        "SIGNUP": "Sign Up"
+    }
+}

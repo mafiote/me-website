@@ -1,0 +1,21 @@
+<div class="ui-g">
+    <h2 *ngIf="showTitle" class="ui-g-12">{{ title | translate }}</h2>
+    <div #attachmentContentObj class="rs-attachment-content ui-g ui-g-12">
+
+        <div *ngFor="let file of files" class="ui-g rs-attachment">
+            <button type="button" *ngIf="!file.inProgress" pButton icon="ui-icon-clear" (click)="delFile(file.id)" class="rs-attachment-del ui-button-danger"></button>
+
+            <img class="ui-g-12 fmt" [hidden]="file.inProgress" src="assets/layout/images/file/{{ file.extension }}.png" (click)="download(file)">
+            <div class="ui-g-12" [hidden]="file.inProgress" class="rs-attachment-link" (click)="download(file)"> {{ file.originalName }} </div>
+
+            <p-progressSpinner [style]="{width: '50px', height: '50px'}" *ngIf="file.inProgress"></p-progressSpinner>
+        </div>
+
+        <p-progressSpinner [style]="{width: '50px', height: '50px'}" *ngIf="inProgressGetList"></p-progressSpinner>
+
+        <p-fileUpload #fileObj mode="basic" name="myfile[]" customUpload="true" [accept]="filter" [auto]="true" [styleClass]="'rs-attachment-add, ui-g'"
+            [chooseLabel]="'COMMON.ATTACHMENT.CHOOSE_LABEL' | translate" [uploadLabel]="'COMMON.ATTACHMENT.UPLOAD_LABEL' | translate"
+            [cancelLabel]="'COMMON.ATTACHMENT.CANCEL_LABEL' | translate" (uploadHandler)="upload($event, fileObj)">
+        </p-fileUpload>
+    </div>
+</div>

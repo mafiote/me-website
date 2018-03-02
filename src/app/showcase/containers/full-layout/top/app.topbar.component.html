@@ -1,0 +1,186 @@
+<div class="topbar clearfix">
+  <div class="topbar-left" style="
+    width: 130px;
+    background: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  ">
+    <div id="logo-bg" style="
+        border-top: 56px solid #e92265;
+        border-left: 0px solid transparent;
+        border-right: 26px solid transparent;
+        height: 0;
+        width: 100px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -999999;
+    "></div>
+    <div class="logo"></div>
+  </div>
+
+  <div class="topbar-right">
+
+    <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)" style="
+      position: absolute;
+      left: 93px;
+      top: 9px;
+    ">
+      <i></i>
+    </a>
+
+    <a id="breadcrums" style="
+      float: left;
+      color: white;
+      padding: 10px 5px;
+      font-size: 16px;
+      margin-top: 6px;
+    ">
+      {{ 'NAVIGATION.' + currentPage | translate }}
+    </a>
+
+    <!--     
+    <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
+      <i></i>
+    </a> -->
+
+    <!-- <a id="rightpanel-menu-button" href="#" (click)="app.onRightPanelButtonClick($event)">
+      <i class="material-icons">more_vert</i>
+    </a> -->
+
+    <a id="topbar-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
+      <i class="material-icons">menu</i>
+    </a>
+
+    <ul class="topbar-items animated fadeInDown" [ngClass]="{'topbar-items-visible': app.topbarMenuActive}">
+      <li #profile class="profile-item" *ngIf="app.profileMode==='top'||app.isHorizontal()" [ngClass]="{'active-top-menu':app.activeTopbarItem === profile}">
+
+        <a href="#" (click)="app.onTopbarItemClick($event,profile)">
+          <img class="profile-image" src="assets/layout/images/avatar.png" />
+          <span class="topbar-item-name"></span>
+        </a>
+
+        <ul class="ultima-menu animated fadeInDown">
+          <li role="menuitem">
+            <a href="#">
+              <i class="material-icons">person</i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a href="#">
+              <i class="material-icons">security</i>
+              <span>Privacy</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a href="#">
+              <i class="material-icons">settings_applications</i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a href="#" (click)="logout()">
+              <i class="material-icons">power_settings_new</i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li role="menuitem">
+        <a href="#" class="ripplelink" (click)="logout()">
+          <i class="topbar-icon material-icons">power_settings_new</i>
+          <span class="topbar-item-name">Logout</span>
+        </a>
+      </li>
+      <li #settings [ngClass]="{'active-top-menu':app.activeTopbarItem === settings}">
+        <a href="#" (click)="app.onTopbarItemClick($event,settings)">
+          <i class="topbar-icon material-icons">settings</i>
+          <span class="topbar-item-name">{{ 'SETTINGS.MENU_TITLE' | translate }}</span>
+        </a>
+        <ul class="ultima-menu animated fadeInDown">
+          <li role="menuitem">
+            <a href="#/sys/Dashboard">
+              <i class="material-icons">settings_applications</i>
+              <span>{{ 'SETTINGS.SYSTEM' | translate }}</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a href="#">
+              <i class="material-icons">mail_outline</i>
+              <span>{{ 'SETTINGS.MAIL' | translate }}</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a href="#/sys/Notifications">
+              <i class="material-icons">notifications_none</i>
+              <span>{{ 'SETTINGS.NOTIFICATION.MANAGEMENT' | translate }}</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a href="#/sys/role">
+              <i class="material-icons">fingerprint</i>
+              <span>{{ 'SETTINGS.USER_ROLES' | translate }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li #lang [ngClass]="{'active-top-menu':app.activeTopbarItem === lang}">
+        <a href="#" (click)="app.onTopbarItemClick($event,lang)">
+          <i class="topbar-icon material-icons">language</i>
+          <span class="topbar-item-name">{{ 'LANG.MENU_TITLE' | translate }}</span>
+        </a>
+        <ul class="ultima-menu animated fadeInDown" style="width: 100px;">
+          <li role="menuitem">
+            <a (click)="changeLang('tr')">
+              <span>{{ 'LANG.TR' | translate }}</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a (click)="changeLang('en')">
+              <span>{{ 'LANG.EN' | translate }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li #messages [ngClass]="{'active-top-menu':app.activeTopbarItem === messages}">
+        <a (click)="app.onTopbarItemClick($event,messages);getNote();">
+          <!-- click e eklendiğinde sağdaki menu acılacak app.onRightPanelButtonClick($event) -->
+          <i class="topbar-icon material-icons animated swing" style="cursor: pointer;">message</i>
+          <span *ngIf="notificationList.length" class="topbar-badge animated rubberBand">{{notificationList.length }}</span>
+          <span class="topbar-item-name">Messages</span>
+        </a>
+        <ul *ngIf="!notificationList.length" class="ultima-menu animated fadeInDown" style="width: 300px;">
+          <li role="menuitem">
+            <div class=" ui-g-12">
+              <div style="text-align: center;">{{"NOTIFICATION.FIELDS.NO_MESSAGE" | translate}}</div>
+            </div>
+          </li>
+        </ul>
+        <ul class="ultima-menu animated fadeInDown" style="width: 300px;">
+          <li role="menuitem" *ngFor="let noti of notificationList">
+            <a (click)="seenNote(noti.notificationID)" class="topbar-message">
+              <img class="avatar ui-g-3" style="margin-right:0px;" src="assets/_perimages/{{noti.notificationSenderPersonnelCode}}.jpg"
+              />
+              <div class=" ui-g-8">
+                <div>{{noti.notificationSenderPersonnelName}} &nbsp;
+                  <span style="font-size: 12px;position: absolute;">{{noti.passingTime}}</span>
+                </div>
+                <div pTooltip="{{noti.code}}-{{noti.notificationMessage}}" tooltipPosition="bottom">{{noti.notificationMessage}}</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- <li #search class="search-item" [ngClass]="{'active-top-menu':app.activeTopbarItem === search}" (click)="app.onTopbarItemClick($event,search)">
+        <span class="md-inputfield">
+          <input type="text" pInputText>
+          <label>Arama yapın | kaizen no vb..</label>
+          <i class="topbar-icon material-icons">search</i>
+        </span>
+      </li> -->
+
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div style="height: 315px;" class="card card-w-title">
+    <h1>{{ title | translate }} </h1>
+    <p-dataTable [value]="recs" [editable]="true" (onEditInit)="onEditInit($event)" scrollable="true" scrollHeight="205px" [style]="{'max-height':'260px'}">
+        <!-- button column -->
+        <p-column styleClass="col-button, col-c" [style]=" {'width':'100px', 'height':'40px'}">
+            <ng-template pTemplate="header">
+                <button type="button" pButton icon="ui-icon-add" style="font-size: 10px;" class="ui-button-success" (click)="add()"></button>
+                <button type="button" pButton icon="ui-icon-refresh" style="font-size: 10px;" (click)="getList()"></button>
+            </ng-template>
+
+            <ng-template let-rowData="rowData" pTemplate="body">
+                <!-- Save butonu -->
+                <button type="button" pButton icon="ui-icon-check" style="font-size: 10px;" *ngIf="selectedRec == rowData || rowData.id == '' "
+                    class="ui-button-primary" (click)="save(rowData)"></button>
+                <!-- Delete butonu  -->
+                <button type="button" pButton icon="ui-icon-trash" style="font-size: 10px;" *ngIf="selectedRec == rowData && rowData.id != '' "
+                    class="ui-button-danger" (click)="remove(rowData)"></button>
+            </ng-template>
+        </p-column>
+
+        <p-column field="code" header="{{'COMMON.FIELD.CODE' | translate}}" [editable]="true" [style]=" {'width':'100px'}"></p-column>
+        <p-column field="name" header="{{'COMMON.FIELD.NAME' | translate}}" [editable]="true"></p-column>
+
+    </p-dataTable>
+
+</div>

@@ -1,0 +1,53 @@
+<div class="rs-page-header ui-g">
+    <div class="rs-toolbar ui-g-12 ui-g-nopad">
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                <button pButton type="button" class="rs-toolbar-button" label="{{ 'COMMON.MENU.BACK' | translate }}" (click)="cancel()"></button>
+            </div>
+        </p-toolbar>
+    </div>
+</div>
+
+<div class="ui-g-8">
+
+    <h1>{{ "SYS.AUTOCODE.TITLE" | translate }} </h1>
+
+    <p-dataTable [value]="codelist" [editable]="true" (onEditInit)="onEditInit($event)">
+        <!-- button column -->
+        <p-column styleClass="col-button, col-c" [style]=" {'width':'55px', 'height':'40px'}">
+            <ng-template pTemplate="header">
+                <button type="button" pButton icon="ui-icon-refresh" style="font-size: 10px;" (click)="getList()"></button>
+            </ng-template>
+
+            <ng-template let-rowData="rowData" pTemplate="body">
+                <!-- Save butonu -->
+                <button type="button" pButton icon="ui-icon-check" style="font-size: 10px;" *ngIf="selectedRec == rowData || rowData.id == '' "
+                    class="ui-button-primary" (click)="save(rowData)"></button>
+
+            </ng-template>
+        </p-column>
+
+        <p-column field="screenCode" [sortable]="true" styleClass="col-c" header="{{'SYS.AUTOCODE.SCREEN_CODE' | translate}}"></p-column>
+        <p-column field="screenName" [sortable]="true" header="{{'SYS.AUTOCODE.SCREEN_NAME' | translate}}"></p-column>
+        <p-column field="codeFormat" [editable]="true" header="{{'SYS.AUTOCODE.CODE_FORMAT' | translate}}">
+            <ng-template let-col let-code="rowData" pTemplate="editor">
+                <span class="md-inputfield">
+                    <input type="text" pInputText style="width: 100%" [(ngModel)]="code.codeFormat" appendTo="body">
+                </span>
+            </ng-template>
+        </p-column>
+        <p-column field="lastCodeNumber" [editable]="true" styleClass="col-number" header="{{'SYS.AUTOCODE.LAST_CODE' | translate}}">
+            <ng-template let-col let-code="rowData" pTemplate="editor">
+                <span class="md-inputfield">
+                    <input type="number" pInputText style="width: 100%;text-align:end;" [(ngModel)]="code.lastCodeNumber" appendTo="body">
+                </span>
+            </ng-template>
+        </p-column>
+
+
+
+    </p-dataTable>
+
+
+
+</div>
