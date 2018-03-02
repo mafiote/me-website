@@ -1,0 +1,79 @@
+<!-- Card -->
+<sys-role-card #card *ngIf="isCardShow" [rec]="selectedRec" (onDel)="onDel($event)" (onSave)="onSave($event)" (onCancel)="onCancel($event)"></sys-role-card>
+
+<!-- List -->
+<div class="list" [hidden]="isCardShow">
+    <div class="rs-page-header ui-g">
+
+        <div class="rs-toolbar ui-g-12 ui-g-nopad">
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-filter-list" label="{{ 'COMMON.MENU.FILTER' | translate}}" (click)="opFilter.toggle($event)"></button>
+                    <button pButton type="button" icon="ui-icon-add" class="teal-btn" label="{{ 'COMMON.MENU.ADD' | translate}}" (click)="addRecord()"></button>
+                </div>
+                <div class="ui-toolbar-group-right">
+                    <span style="color: black;">{{'COMMON.GRID.RECORD_COUNT' | translate}}:&nbsp;{{ recs.length }}</span>
+                    <button pButton class="rs-toolbar-button" label="CSV" icon="ui-icon-file-download" (click)="list.exportCSV()"></button>
+                </div>
+            </p-toolbar>
+
+            <p-toolbar class="rs-filter-summary">
+
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-refresh" (click)="onFilterSubmit()"></button>
+
+                    <button pButton type="button" iconPos="right" *ngFor="let item of getActiveFilters()" class="rs-filter-summary-item blue-grey-btn"
+                        label="{{ filterFormLabels[item.control_name] | translate }} : {{ checkDate(item.control_value) ? (item.control_value | date:'dd.MM.yyyy') : (item.control_value) }} "
+                        icon="ui-icon-close" (click)="filterForm.controls[item.control_name].reset()">
+                    </button>
+                </div>
+            </p-toolbar>
+
+            <p-overlayPanel #opFilter [style]="{ 'width':'400px' }">
+
+                <form novalidate (ngSubmit)="onFilterSubmit()" [formGroup]="filterForm">
+                    <div class="ui-g form-group" style="margin-top: 10px;">
+
+                        <div class="ui-g-12 ui-md-6">
+                            <span class="md-inputfield">
+                                <input type="text" pInputText style="width: 100%;" formControlName="code">
+                                <label>{{'COMMON.FIELD.CODE' | translate}}</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-6">
+                            <span class="md-inputfield">
+                                <p-autoComplete formControlName="personnelID" [dropdown]="true" rsAutoComplete apiPath="pd/personnel">
+                                </p-autoComplete>
+                                <label>{{'PD.PERSONNEL.TITLE' | translate}}</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-6">
+                            <span class="md-inputfield">
+                                <p-autoComplete formControlName="identityRoleID" [method]="'Roles'" [dropdown]="true" rsAutoComplete apiPath="account">
+                                </p-autoComplete>
+                                <label>{{'SYS.IDENTITY_ROLE.TITLE' | translate}}</label>
+                            </span>
+                        </div>
+
+                        <div class="ui-g-12">
+                            <button pButton type="submit" label="{{ 'COMMON.MENU.FILTER' | translate }}" (click)="opFilter.hide($event)"></button>
+                        </div>
+
+                    </div>
+                </form>
+            </p-overlayPanel>
+        </div>
+    </div>
+
+    <!-- Liste -->
+    <div class="ui-g">
+        <div class="ui-g-6">
+            <p-dataTable #list id="list" [loading]="loading" scrollable="true" [rows]="50" [paginator]="true" [pageLinks]="10" scrollHeight="calc(100vh - 270px)"
+                selectionMode="single" (onRowDblclick)="rowDblClick($event)" [value]="recs">
+                <p-column field="code" [style]="{ 'width': '200px' }" header="{{'SYS.ROLE_GROUP.ROLE_GROUPS' | translate}}"></p-column>
+            </p-dataTable>
+        </div>
+    </div>
+</div>

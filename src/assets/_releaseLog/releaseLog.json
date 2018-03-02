@@ -1,0 +1,45 @@
+[
+    {
+        "version": "0.3.0",
+        "bugfix": [
+            {
+                "tr": "rs-autocomplete ve rs-calendar componentleri hatalı çalıştığı için uygulamada kullanımdan kaldırılıyor.",
+                "en": ""
+            }
+        ],
+        "feature": [
+            {
+                "tr": "SignalR Entegre edildi",
+                "en": ""
+            },
+            {
+                "tr": "Liste ve Kart ekranı görsel güncelleme yapıldı",
+                "en": ""
+            },
+            {
+                "tr": "Autocomplete ve calendar direktifleri eklendi",
+                "en": ""
+            },
+            {
+                "tr": "ChartJS alt yapısı yeniden yazıldı",
+                "en": ""
+            },
+            {
+                "tr": "Dosya ekleme özelliği eklendi",
+                "en": ""
+            },
+            {
+                "tr": "EDI, Role ve Release Notes sayfaları eklendi",
+                "en": ""
+            },
+            {
+                "tr": "Reactive Form alt yapısına geçildi",
+                "en": ""
+            },
+            {
+                "tr": "AutoCode ekranı güncelleştirildi",
+                "en": ""
+            }
+        ]
+    }
+]

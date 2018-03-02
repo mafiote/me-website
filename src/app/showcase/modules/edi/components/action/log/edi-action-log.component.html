@@ -1,0 +1,102 @@
+<!-- Filte, Menu -->
+<div class="rs-toolbar ui-g-12 ui-g-nopad">
+    <p-toolbar>
+        <div class="ui-toolbar-group-left">
+            <button pButton type="button" icon="ui-icon-filter-list" label="{{ 'COMMON.MENU.FILTER' | translate}}" (click)="opFilter.toggle($event)"></button>
+            <button pButton type="button" class="rs-toolbar-button" label="{{ 'COMMON.MENU.BACK' | translate }}" (click)="onBack.emit()"></button>
+        </div>
+    </p-toolbar>
+
+    <p-toolbar class="rs-filter-summary">
+
+        <div class="ui-toolbar-group-left">
+            <button pButton type="button" icon="ui-icon-refresh" (click)="onFilterSubmit()"></button>
+
+            <button pButton type="button" iconPos="right" *ngFor="let item of getActiveFilters()" class="rs-filter-summary-item blue-grey-btn"
+                label="{{ filterFormLabels[item.control_name] | translate }} : {{ checkDate(item.control_value) ? (item.control_value | date:'dd.MM.yyyy') : (item.control_value) }} "
+                icon="ui-icon-close" (click)="filterForm.controls[item.control_name].reset()">
+            </button>
+        </div>
+    </p-toolbar>
+
+    <p-overlayPanel #opFilter [style]="{ 'width':'400px' }">
+
+        <form novalidate (ngSubmit)="onFilterSubmit()" [formGroup]="filterForm">
+            <div class="ui-g form-group" style="margin-top: 10px;">
+
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText style="width: 100%;" formControlName="code">
+                        <label>{{'COMMON.FIELD.CODE' | translate}}</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText style="width: 100%;" formControlName="desc">
+                        <label>{{'COMMON.FIELD.DESC' | translate}}</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
+                        <p-calendar formControlName="date" rsCalendar>
+                        </p-calendar>
+                        <label>{{'COMMON.DATE.DATE' | translate}}</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
+                        <p-autoComplete formControlName="isRead" [dropdown]="true" rsAutoComplete [dataList]="isReadList">
+                        </p-autoComplete>
+                        <label>{{'SYS.EDI.IS_READ' | translate}}</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
+                        <p-autoComplete formControlName="isReImport" [dropdown]="true" rsAutoComplete [dataList]="isReImportList">
+                        </p-autoComplete>
+                        <label>{{'SYS.EDI.IS_RE_IMPORT' | translate}}</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <button pButton type="submit" label="{{ 'COMMON.MENU.FILTER' | translate }}" (click)="opFilter.hide($event)"></button>
+                </div>
+
+            </div>
+        </form>
+    </p-overlayPanel>
+</div>
+
+<!-- Liste -->
+
+<div class="ui-g-12 ui-g-nopad">
+    <div class="ui-g-12 ui-md-12">
+        <p-dataTable #list id="list" selectionMode="single" [rows]="20" [paginator]="true" [pageLinks]="10" scrollable="true" scrollHeight="calc(100vh - 360px)"
+            [value]="recs">
+            <p-footer>{{'COMMON.GRID.RECORD_COUNT' | translate}}&nbsp; :&nbsp;{{ recs.length }} </p-footer>
+
+            <p-column field="dateTime" header="{{'COMMON.DATE.DATETIME' | translate}}" [style]="{ 'width': '100px' }" styleClass="col-c">
+                <ng-template let-data="rowData" pTemplate="body">
+                    {{ data.dateTime | date:'dd/MM/yyyy H:m' }}
+                </ng-template>
+            </p-column>
+            <p-column field="code" header="{{'COMMON.FIELD.CODE' | translate}}" [style]="{ 'width': '75px' }"></p-column>
+            <p-column field="desc" header="{{'COMMON.FIELD.DESC' | translate}}" [style]="{ 'width': '300px' }" styleClass="rs-truncate"></p-column>
+            <p-column field="refTable" header="{{'SYS.EDI.REF_TABLE' | translate}}" [style]="{ 'width': '100px' }"></p-column>
+            <p-column field="isRead" header="{{'SYS.EDI.IS_READ' | translate}}" [style]="{ 'width': '75px' }" styleClass="col-c">
+                <ng-template let-col let-rowData="rowData" pTemplate="body">
+                    <i *ngIf="rowData.isRead" class="material-icons">done</i>
+                    <button *ngIf="!rowData.isRead" pButton type="button" (click)="read(rowData)" class="ui-button-info" label="{{'SYS.EDI.READ' | translate}}"></button>
+                </ng-template>
+            </p-column>
+            <p-column field="isReImport" header="{{'SYS.EDI.IS_RE_IMPORT' | translate}}" [style]="{ 'width': '100px' }" styleClass="col-c">
+                <ng-template let-col let-rowData="rowData" pTemplate="body">
+                    <i *ngIf="rowData.isReImport" class="material-icons">done</i>
+                    <button *ngIf="!rowData.isReImport" pButton type="button" (click)="reImport(rowData)" class="ui-button-info" label="{{'SYS.EDI.IMPORT' | translate}}"></button>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+    </div>
+</div>

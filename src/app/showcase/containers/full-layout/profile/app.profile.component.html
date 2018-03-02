@@ -1,0 +1,66 @@
+<div class="profile" [ngClass]="{'profile-expanded':active}">
+    <a href="#" (click)="onClick($event)">
+        <img class="avatar profile-avatar" src="assets/_perimages/{{personelImage}}.jpg" alt="" />
+
+
+        <span class="profile-name">{{ userName }}</span>
+        <i class="material-icons">keyboard_arrow_down</i>
+    </a>
+</div>
+
+<ul class="ultima-menu profile-menu" [@menu]="active ? 'visible' : 'hidden'">
+    <li role="menuitem">
+        <a href="#" class="ripplelink" [attr.tabindex]="!active ? '-1' : null">
+            <i class="material-icons">person</i>
+            <span>{{ 'PROFILE_MENU.PROFILE' | translate }}</span>
+        </a>
+    </li>
+    <li role="menuitem">
+        <a class="ripplelink" style="cursor: pointer;" [attr.tabindex]="!active ? '-1' : null" (click)="changePass()">
+            <i class="material-icons">security</i>
+            <span>{{ 'PROFILE_MENU.CHANGE_PASS' | translate }}</span>
+        </a>
+    </li>
+    <li role="menuitem">
+        <a href="#" class="ripplelink" [attr.tabindex]="!active ? '-1' : null">
+            <i class="material-icons">settings_application</i>
+            <span>{{ 'PROFILE_MENU.SETTINGS' | translate }}</span>
+        </a>
+    </li>
+    <li role="menuitem">
+        <a href="#" class="ripplelink" [attr.tabindex]="!active ? '-1' : null" (click)="logout()">
+            <i class="material-icons">power_settings_new</i>
+            <span>{{ 'PROFILE_MENU.LOGOUT' | translate }}</span>
+        </a>
+    </li>
+</ul>
+
+<!-- Şifre Değiştirme Dialoğu -->
+<p-dialog header="{{ 'ACCOUNT.TITLE_CHANGE_PASS' | translate }}" [(visible)]="changePassDialogActive" #changepassdialog>
+
+    <div>
+        <div class="ui-g-12 ui-g">
+            <span class="md-inputfield ui-g-12">
+                <input type="text" [(ngModel)]="oldPassword" style="width: 100%;" pInputText>
+                <label>{{"PD.PERSONNEL_CARD.OLD_PASS" | translate }}</label>
+            </span>
+        </div>
+        <div class="ui-g-12 ui-g">
+            <span class="md-inputfield ui-g-12">
+                <input type="text" [(ngModel)]="newPassword" style="width: 100%;" pInputText>
+                <label>{{"PD.PERSONNEL_CARD.NEW_PASS" | translate }}</label>
+            </span>
+        </div>
+        <div class="ui-g-12 ui-g">
+            <span class="md-inputfield ui-g-12">
+                <input style="width: 100%;" [(ngModel)]="confirmPassword" type="text" pInputText>
+                <label>{{"PD.PERSONNEL_CARD.CONF_PASS" | translate }}</label>
+            </span>
+        </div>
+    </div>
+
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="{{ 'COMMON.DIALOG.NO' | translate }}" (click)="changePassDialogClose()"></button>
+        <button type="button" pButton icon="fa-check" label="{{ 'COMMON.DIALOG.YES' | translate }}" (click)="changePassRequest()"></button>
+    </p-footer>
+</p-dialog>

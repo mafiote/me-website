@@ -1,0 +1,18 @@
+<!-- Filte, Menu -->
+<div class="rs-page-header ui-g">
+
+</div>
+
+<!-- Liste -->
+<div class="ui-g ui-g-12 rs-dashboard">
+    <div class="ui-g-6 ui-md-2 card" (click)="edi()">
+        {{ 'SYS.EDI.TITLE' | translate }}
+    </div>
+    <div class="ui-g-6 ui-md-2 card" (click)="autoCode()">
+        {{ 'SYS.AUTOCODE.TITLE' | translate }}
+    </div>
+    <div class="ui-g-6 ui-md-2 card" (click)="sysVersion()">
+        {{ 'SYS.VERSION.TITLE' | translate }}
+        <p>{{ 'SYS.VERSION.LOG' | translate }}</p>
+    </div>
+</div>

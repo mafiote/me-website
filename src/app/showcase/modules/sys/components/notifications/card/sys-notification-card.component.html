@@ -1,0 +1,114 @@
+<!-- <form novalidate (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div class="rs-toolbar ui-g-12 ui-g-nopad">
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                <button pButton type="submit" icon="ui-icon-check" label="{{ 'COMMON.MENU.SAVE' | translate }}" [disabled]="form.pristine && !previewMod">
+                    <span *ngIf="!form.pristine && getValidationErrors().length > 0" class="validation-error-badge shadow-box ui-shadow-2 fa ui-icon-error"
+                        (click)="opValidationErrors.toggle($event)">
+                    </span>
+                    <span *ngIf="previewMod" class="validation-error-badge shadow-box ui-shadow-2 fa ui-icon-error" (click)="opValidationErrors.toggle($event)">
+                    </span>
+                </button>
+
+                <button *ngIf="form.pristine" pButton type="button" class="rs-toolbar-button" label="{{ 'COMMON.MENU.BACK' | translate }}"
+                    (click)="cancel()"></button>
+                <button *ngIf="!form.pristine" pButton type="button" class="rs-toolbar-button danger" label="{{ 'COMMON.MENU.CANCEL' | translate }}"
+                    (click)="cancel()"></button>
+
+                <button *ngIf="!_isNew && !previewMod" pButton type="button" class="rs-toolbar-button danger" label="{{ 'COMMON.MENU.DELETE' | translate }}"
+                    (click)="del()"></button>
+            </div>
+        </p-toolbar>
+
+        <p-overlayPanel #opValidationErrors [style]="{ 'width':'300px' }">
+
+            <p-dataList *ngIf="!previewMod" [value]="getValidationErrors()" styleClass="rs-validation-list">
+                <ng-template let-error pTemplate="item">
+                    <div>
+                        {{ "COMMON.MSG.VALIDATION." + error.error_name | translate:{ field: (error.control_label | translate), min: error.error_value.requiredLength
+                        } }}
+                    </div>
+                </ng-template>
+            </p-dataList>
+            <div *ngIf="previewMod">
+                İzleme modunda değişiklik yapılamaz.
+            </div>
+
+        </p-overlayPanel>
+    </div>
+
+    <div class="ui-g ui-g-12 ui-g-nopad rs-card-body">
+        <div class="ui-g ui-g-8 ui-md-6">
+            <div class="ui-g form-group" style="margin-top: 10px;">
+                <div class="ui-g-12 ui-md-6 form-container">
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-calendar formControlName="date" rsCalendar>
+                            </p-calendar>
+                            <label>
+                                {{'COMMON.DATE.DATE' | translate}}
+                            </label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-autoComplete formControlName="cdLostTimeDetailID" [dropdown]="true" rsAutoComplete apiPath="cd/losttimedetail">
+                            </p-autoComplete>
+                            <label>
+                                {{'CD.LOSTTIME_DETAIL.TITLE' | translate}}
+                            </label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-g form-container">
+                    <div class="ui-g-12 ui-md-6">
+                        <span class="md-inputfield">
+                            <p-autoComplete formControlName="pdDepartmentID" [dropdown]="true" rsAutoComplete apiPath="pd/department">
+                            </p-autoComplete>
+                            <label>{{'PD.DEPARTMENT.TITLE' | translate}}</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <span class="md-inputfield">
+                            <p-autoComplete formControlName="prdMachineLineID" [dropdown]="true" rsAutoComplete apiPath="prd/machineLine">
+                            </p-autoComplete>
+                            <label>{{'PRD.MACHINE_LINE.TITLE' | translate}}</label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-6 form-container">
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-autoComplete formControlName="targetDepartmentID" [dropdown]="true" rsAutoComplete apiPath="pd/department">
+                            </p-autoComplete>
+                            <label>{{'CD.MANUEL_COST.TARGET_DEP' | translate}}</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <input style="width: 100%;" formControlName="laborTime" type="number" pInputText>
+                            <label>{{'CD.MANUEL_COST.LABOR_TIME' | translate}}</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-autoComplete formControlName="prdMaterialID" [minLength]="2" rsAutoComplete apiPath="prd/material">
+                            </p-autoComplete>
+                            <label>{{'PRD.MATERIAL.TITLE' | translate}}</label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-12">
+                    <span class="md-inputfield">
+                        <input style="width: 100%;" formControlName="desc" type="text" pInputText>
+                        <label>{{'COMMON.FIELD.DESC' | translate}}</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form> -->
